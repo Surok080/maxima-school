@@ -87,70 +87,120 @@ h2 {
 }
 
 .items {
+  padding: 0 50px;
   margin: 0 auto;
   margin-top: 4rem;
-  width: clamp(35rem, 60vw, 50rem);
+  width: 100%;
+  max-width: 1080px;
 }
 
 .App .item {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   display: flex;
   gap: 2rem;
   align-items: center;
-  background-color: #222222;
-  border-radius: 1rem;
-  padding: 2rem;
-  margin-bottom: 4rem;
+  text-align: center;
+  border: 1px solid #4aa5be;
+  padding: 1rem;
+  justify-content: center;
+  height: 50px;
+  position: relative;
+  font-family: monospace;
+  font-size: 16px;
 }
 
-.App .item p {
-  margin-bottom: 0.4rem;
+.categories {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  overflow: scroll;
+  padding-right: 20px;
 }
 
-.App .item img {
-  margin: 0;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
-  background-color: #121212;
-}
-
-.App .item .name {
-  text-transform: capitalize;
-}
-
-.App .item .username {
-  opacity: 0.7;
-  font-size: 1.4rem;
-}
-
-.App .item .job {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-}
-
-.App .item .status {
-  font-size: 1.2rem;
+.category {
+  border: 1px solid #4aa5be;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 50px;
+  font-family: monospace;
   font-weight: bold;
-  text-transform: uppercase;
-  margin-top: 0.75rem;
-  padding: 0.5rem 0.7rem;
-  border-radius: 0.4rem;
-  width: fit-content;
+  font-size: 16px;
 }
 
-.App .item .status.success {
-  background-color: rgba(67, 255, 76, 0.1);
-  color: #c4ffc4;
+.category:hover {
+  background-color: #4aa5be;
+  transition: all .2s linear;
 }
 
-.App .item .status.warn {
-  background-color: rgb(195, 160, 35, 0.1);
-  color: #ffd358;
+.tableColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.App .item .status.danger {
-  background-color: rgb(239, 90, 90, 0.28);
-  color: #ffe7e7;
+.deleteButton {
+  position: absolute;
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  border: solid 0.2rem #4aa5be;
+  background-color: inherit;
+  color: white;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #4aa5be;
+  transition: all .2s linear;
+}
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(41, 41, 41, 0.772);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__window {
+  padding: 20px;
+  width: 400px;
+  height: 200px;
+  background: white;
+  border-radius: 10px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.modal__window p {
+  padding: 20px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttonsContent button {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.searchForm {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
