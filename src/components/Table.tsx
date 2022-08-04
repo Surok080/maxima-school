@@ -39,7 +39,7 @@ const Table = ({ data }: any) => {
       )
       setDataPeople(copyData)
     } else {
-
+      setDataPeople(filterDataPeople)
     }
   }
 
