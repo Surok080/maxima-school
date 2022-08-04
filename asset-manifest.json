@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/maxima-school/static/css/main.7a91b774.css",
-    "main.js": "/maxima-school/static/js/main.b44f2dc1.js",
+    "main.js": "/maxima-school/static/js/main.85608755.js",
     "index.html": "/maxima-school/index.html",
     "main.7a91b774.css.map": "/maxima-school/static/css/main.7a91b774.css.map",
-    "main.b44f2dc1.js.map": "/maxima-school/static/js/main.b44f2dc1.js.map"
+    "main.85608755.js.map": "/maxima-school/static/js/main.85608755.js.map"
   },
   "entrypoints": [
     "static/css/main.7a91b774.css",
-    "static/js/main.b44f2dc1.js"
+    "static/js/main.85608755.js"
   ]
 }
