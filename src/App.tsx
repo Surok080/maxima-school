@@ -1,21 +1,17 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Table from './components/Table';
 import MOCK_DATA from './app/data/MOCK_DATA.json';
 
-
 function App() {
   const [people, setPeople] = useState({});
   const [loading, setLoading] = useState(true);
 
-
-  
   useEffect(() => {
     setTimeout(() => {
       setPeople(MOCK_DATA);
       setLoading(false);
-    }, 1000);
+    }, 2000);
   }, []);
 
   const data = {
@@ -30,12 +26,11 @@ function App() {
   return (
     <>
       {loading ? (
-        <h2>Loading...</h2>
+        <div className='loading'></div>
       ) : (
         <Table data={data} />
       )}
     </>
-
   );
 }
 

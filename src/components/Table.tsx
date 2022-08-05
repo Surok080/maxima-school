@@ -49,13 +49,10 @@ const Table = ({ data }: any) => {
     setLoading(false)
   }, []);
 
-
-
   useEffect(() => {
     const Debounce = setTimeout(() => {
       filterBooks(searchText);
     }, 200);
-
     return () => clearTimeout(Debounce);
   }, [searchText]);
 
@@ -116,8 +113,6 @@ const Table = ({ data }: any) => {
               </div>
             </div>
           </div> : null}
-
-
           <h1 className="title">Pagination</h1>
           <>
             <div className="pagination">
