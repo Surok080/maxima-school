@@ -6,19 +6,19 @@ interface Gap {
 }
 const usePagination: UsePagination = ({ contentPerPage, count }) => {
   const [page, setPage] = useState(1);
-  // like 3 dots that surrounds the immediate pages
+  // Три точки не вмещающихся номер страниц
   const [gaps, setGaps] = useState<Gap>({
     before: false,
     paginationGroup: [],
     after: true,
   });
-  // number of pages in total (total items / content on each page)
+  // общее количество страниц (общее количество элементов / контента на каждой странице)
   const pageCount = Math.ceil(count / contentPerPage);
   // index of last item of current page
   const lastContentIndex = page * contentPerPage;
-  // index of first item of current page
+  // индекс последнего элемента текущей страницы
   const firstContentIndex = lastContentIndex - contentPerPage;
-  //Pages between the first and last pages
+  //Страницы между первой и последней страницами  
   const [pagesInBetween, setPagesInBetween] = useState<number[]>([]);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const usePagination: UsePagination = ({ contentPerPage, count }) => {
     }
   }, [pageCount]);
 
-  // to set the pages between the gaps depending on position of current page
-  //and to setGaps Depending on position of current page
+  // для установки промежутков между страницами в зависимости от положения текущей страницы
+  ////и для установки пробелов в зависимости от положения текущей страницы
   useEffect(() => {
     const currentLocation = pagesInBetween.indexOf(page);
     let paginationGroup = [];
@@ -67,19 +67,17 @@ const usePagination: UsePagination = ({ contentPerPage, count }) => {
     setGaps({ paginationGroup, before, after });
   }, [page, pagesInBetween, pageCount]);
 
-  // change page based on direction either front or back
+  // изменение страницы в зависимости от направления вперед или назад
   const changePage = (direction: boolean) => {
     setPage((state) => {
-      // move forward
       if (direction) {
-        // if page is the last page, do nothing
+        // если страница является последней страницей, ничего не делайте        
         if (state === pageCount) {
           return state;
         }
         return state + 1;
-        // go back
       } else {
-        // if page is the first page, do nothing
+        // если страница - это первая страница, ничего не делайте
         if (state === 1) {
           return state;
         }
@@ -89,11 +87,10 @@ const usePagination: UsePagination = ({ contentPerPage, count }) => {
   };
 
   const setPageSAFE = (num: number) => {
-    // if number is greater than number of pages, set to last page
+    // если число больше, чем количество страниц, установите значение последняя страница
     if (num > pageCount) {
       setPage(pageCount);
-      // if number is less than 1, set page to first page
-    } else if (num < 1) {
+      // если число меньше 1, установите страницу на первую страницу    } else if (num < 1) {
       setPage(1);
     } else {
       setPage(num);

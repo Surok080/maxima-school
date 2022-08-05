@@ -26,14 +26,10 @@ const Table = ({ data }: any) => {
     count: data.data.length,
   });
 
-
-
-
-  const filterBooks = (text: string) => {
+// фильтрация книг
+  const filterBooks = (textSearch: string) => {
     let copyData = resultDataPeople.concat();
-
-    console.log(searchText);
-    if (searchText) {
+    if (textSearch) {
       copyData = filterDataPeople.filter(({ first_name }: any) =>
         first_name.toLowerCase().includes(searchText.toLowerCase())
       )
@@ -103,9 +99,8 @@ const Table = ({ data }: any) => {
 
   return (
     <>
-
       {loading ? (
-        <h2>Loading...</h2>
+        <div className='loading'></div>
       ) : (
         <div className="App">
           {modalDelete ? <div className='modal'>
@@ -167,7 +162,10 @@ const Table = ({ data }: any) => {
             </div>
             <h3 className="title">Удаленные id хранятся в redux: {state.counter.join()}</h3>
             <div className="items">
-              <form className='searchForm'>
+              <form 
+              className='searchForm'
+              onSubmit={(event) => event.preventDefault()}
+              >
                 <label>
                   Поиск по имени:
                   <input type="text" name="name" onChange={(event) => setSearchText(event.target.value)} />
