@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import usePagination from '../app/hooks/usePagination';
 import { useSelector, useDispatch } from 'react-redux';
 import { idDeletePerson } from '../store';
 
 const Table = ({ data }: any) => {
-  const [resultDataPeople, setDataPeople] = useState<any>(data.data);
-  const [filterDataPeople, setFilterDataPeople] = useState(resultDataPeople);
+  const [resultData, setResultData] = useState<any>(data.data);
+  const [filterData, setfilterData] = useState(resultData);
   const [loading, setLoading] = useState(true);
   const [directionSort, setDirectionSort] = useState(true);
   const [modalDelete, setModalDelete] = useState(false);
@@ -26,16 +26,16 @@ const Table = ({ data }: any) => {
     count: data.data.length,
   });
 
-// фильтрация книг
-  const filterBooks = (textSearch: string) => {
-    let copyData = resultDataPeople.concat();
+// фильтрация по элементам
+  const filterItems = (textSearch: string) => {
+    let copyData = resultData.concat();
     if (textSearch) {
-      copyData = filterDataPeople.filter(({ first_name }: any) =>
+      copyData = filterData.filter(({ first_name }: any) =>
         first_name.toLowerCase().includes(searchText.toLowerCase())
       )
-      setDataPeople(copyData)
+      setResultData(copyData)
     } else {
-      setDataPeople(filterDataPeople)
+      setResultData(filterData)
     }
   }
 
@@ -51,23 +51,23 @@ const Table = ({ data }: any) => {
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
-      filterBooks(searchText);
+      filterItems(searchText);
     }, 200);
     return () => clearTimeout(Debounce);
   }, [searchText]);
 
   const sortData = (event: string) => {
-    const copyData = resultDataPeople.concat();
-    let sortDataPeople;
+    const copyData = resultData.concat();
+    let setData;
 
     if (directionSort) {
-      sortDataPeople = copyData.sort(
+      setData = copyData.sort(
         (a: any, b: any) => a[event] > b[event] ? 1 : -1)
     } else {
-      sortDataPeople = copyData.reverse(
+      setData = copyData.reverse(
         (a: any, b: any) => a[event] > b[event] ? 1 : -1)
     }
-    setDataPeople(sortDataPeople);
+    setResultData(setData);
     setDirectionSort(!directionSort);
   }
 
@@ -80,7 +80,7 @@ const Table = ({ data }: any) => {
     }
 
     if (arrayDeleteId.length >= 1) {
-      let copyData = resultDataPeople.concat();
+      let copyData = resultData.concat();
       let resulDeletItem = copyData;
       arrayDeleteId.forEach((element: number) => {
         resulDeletItem = copyData.filter(function (item: any) {
@@ -89,7 +89,7 @@ const Table = ({ data }: any) => {
         dispatch(idDeletePerson(id));
         copyData = resulDeletItem;
       });
-      setDataPeople(resulDeletItem)
+      setResultData(resulDeletItem)
     }
     setModalDelete(false);
   }
@@ -182,7 +182,7 @@ const Table = ({ data }: any) => {
                         className='category'
                         onClick={() => sortData(element)}
                       >{element}</div>
-                      {resultDataPeople
+                      {resultData
                         .slice(firstContentIndex, lastContentIndex)
                         .map((item: any, key: number) => {
                           return (

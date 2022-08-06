@@ -205,8 +205,7 @@ h2 {
   justify-content: center;
 }
 
-.loading{
-  /* display: inline-block; */
+.loading {
   position: absolute;
   top: 30%;
   right: 45%;
@@ -223,7 +222,28 @@ h2 {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .App .item {
+    padding: 0.5rem;
+    overflow-y: clip;
+    max-width: 250px;
+    overflow-wrap: anywhere;
+  }
+
+  .App .item:active {
+    padding: 1rem;
+    z-index: 100;
+    overflow-wrap: normal;
+  }
+
+  .items {
+    padding: 0 5px;
+    font-size: 1.2rem;
   }
 }
